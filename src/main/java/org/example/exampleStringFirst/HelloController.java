@@ -1,9 +1,7 @@
 package org.example.exampleStringFirst;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -21,6 +19,12 @@ public class HelloController {
     @GetMapping("/inputName")
     public String inputName() {
         return "inputName";
+    }
+
+    @RequestMapping(params = "username", method = RequestMethod.POST)
+    public void inputName( @RequestParam(name = "username", required=false, defaultValue="World") String name,
+                           Map<String, Object> model) {
+        hello(name, model);
     }
 
     @GetMapping
